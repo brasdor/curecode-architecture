@@ -592,15 +592,14 @@
                         <p><strong>Flow:</strong></p>
                         <ol style="margin-left: 20px;">
                             <li>User logs in with email/password</li>
-                            <li><code>POST /auth/login</code> → curecode-app-service</li>
-                            <li>bcrypt verifies password hash</li>
-                            <li>JWT token generated with user ID + organisation ID</li>
-                            <li>Frontend stores token in memory (TanStack Query)</li>
+                            <li>Backend verifies credentials securely</li>
+                            <li>JWT token generated and returned</li>
+                            <li>Frontend stores token for subsequent requests</li>
                         </ol>
                         <div class="code">
-                            JWT Payload: { userId, organisationId, level, exp }<br>
-                            Token Expiry: 1 hour<br>
-                            Refresh Token: Stored in DB
+                            Authentication: JWT-based<br>
+                            Password Storage: bcrypt hashed<br>
+                            Session: Secure token management
                         </div>
                     </div>
                 </div>
@@ -610,14 +609,14 @@
                     <div class="details">
                         <p><strong>Flow:</strong></p>
                         <ol style="margin-left: 20px;">
-                            <li>Frontend fetches patient list: <code>GET /patients</code></li>
-                            <li>User clicks "New Patient" or selects existing</li>
-                            <li>AHV number validation (Swiss format: 756.XXXX.XXXX.XX)</li>
-                            <li>Patient created/loaded with full insurance data</li>
+                            <li>Frontend fetches patient list for organisation</li>
+                            <li>User selects existing patient or creates new</li>
+                            <li>Swiss AHV number validation applied</li>
+                            <li>Patient record loaded with insurance data</li>
                         </ol>
                         <div class="code">
-                            Database: Patient table (curecode_app_service schema)<br>
-                            Fields: firstName, lastName, ahvNumber, birthDate, insurance
+                            Validation: Swiss AHV format (756.XXXX.XXXX.XX)<br>
+                            Data: Patient demographics + insurance info
                         </div>
                     </div>
                 </div>
@@ -627,14 +626,14 @@
                     <div class="details">
                         <p><strong>Flow:</strong></p>
                         <ol style="margin-left: 20px;">
-                            <li>User clicks "New Consultation" for patient</li>
-                            <li><code>POST /consultations</code> creates consultation record</li>
-                            <li>Links: userId, patientId, date</li>
-                            <li>Returns consultationId</li>
+                            <li>User creates new consultation for patient</li>
+                            <li>Consultation record linked to user and patient</li>
+                            <li>Consultation date recorded</li>
+                            <li>Ready for audio upload</li>
                         </ol>
                         <div class="code">
-                            Database: Consultation table<br>
-                            Relationships: → User, → Patient
+                            Relationships: User → Consultation → Patient<br>
+                            Tracking: Full audit trail maintained
                         </div>
                     </div>
                 </div>
@@ -645,18 +644,16 @@
                         <p><strong>Flow:</strong></p>
                         <ol style="margin-left: 20px;">
                             <li>User uploads audio file (up to 50MB)</li>
-                            <li>Frontend → <code>POST /transcriptions</code> (curecode-ai-service)</li>
-                            <li>File uploaded to Azure Blob Storage</li>
-                            <li>Transcription record created with state: 'PENDING'</li>
-                            <li>Background job calls Whisper API (Infomaniak/OpenAI)</li>
-                            <li>Transcription saved, state → 'COMPLETED'</li>
-                            <li>Frontend polls: <code>GET /transcriptions/:id</code> every 5s</li>
+                            <li>File securely stored in cloud storage</li>
+                            <li>Transcription job queued</li>
+                            <li>Whisper API processes audio to text</li>
+                            <li>Frontend polls for completion status</li>
+                            <li>Transcription text ready for document generation</li>
                         </ol>
                         <div class="code">
-                            Transcription Model: Whisper (configurable vendor)<br>
-                            Language: de (German)<br>
-                            Retry Logic: 3 attempts with exponential backoff<br>
-                            Timeout: 5 minutes per attempt
+                            Transcription: Whisper API (configurable vendor)<br>
+                            Language: German (Swiss medical terminology)<br>
+                            Reliability: Automatic retry with backoff
                         </div>
                     </div>
                 </div>
@@ -666,14 +663,14 @@
                     <div class="details">
                         <p><strong>Flow:</strong></p>
                         <ol style="margin-left: 20px;">
-                            <li><strong>Step 1:</strong> Select Medical Domain (Neurology, Orthopedics, etc.)</li>
+                            <li><strong>Step 1:</strong> Select Medical Specialty</li>
                             <li><strong>Step 2:</strong> Select Document Type (20 types available)</li>
-                            <li><strong>Step 3:</strong> Select Sections (Medical History, Diagnosis, Therapy, etc.)</li>
+                            <li><strong>Step 3:</strong> Select Sections to include</li>
                             <li>User clicks "Generate with AI"</li>
                         </ol>
                         <div class="code">
-                            UI: React Wizard Component (3 steps)<br>
-                            State Management: TanStack Query + Local State
+                            UI: 3-step wizard interface<br>
+                            Customization: Specialty-specific templates
                         </div>
                     </div>
                 </div>
@@ -683,29 +680,24 @@
                     <div class="details">
                         <p><strong>Flow:</strong></p>
                         <ol style="margin-left: 20px;">
-                            <li>Frontend → <code>POST /documents/generate</code> (curecode-app-service)</li>
-                            <li>Backend fetches transcription from AI service</li>
-                            <li>Backend loads YAML prompt template for documentType</li>
+                            <li>Backend retrieves transcription text</li>
+                            <li>Loads appropriate prompt template</li>
                             <li>Constructs prompt with:
                                 <ul style="margin-left: 20px;">
-                                    <li>Transcription text</li>
-                                    <li>Selected sections</li>
-                                    <li>Doctor info (title, specialty, organisation)</li>
-                                    <li>ICD-10-GM + TARMED guidelines</li>
+                                    <li>Transcription content</li>
+                                    <li>Selected document sections</li>
+                                    <li>Doctor and organisation context</li>
+                                    <li>Swiss medical coding guidelines</li>
                                 </ul>
                             </li>
-                            <li>Calls AI service: <code>POST /service/ai/completions</code></li>
-                            <li>AI service → LLM API (Infomaniak/OpenAI)</li>
-                            <li>LLM generates structured markdown text</li>
-                            <li>Backend converts markdown → ProseMirror JSON</li>
-                            <li>Document saved to database</li>
-                            <li>Returns documentId</li>
+                            <li>LLM generates structured medical document</li>
+                            <li>Document formatted for rich-text editor</li>
+                            <li>Saved to database for review</li>
                         </ol>
                         <div class="code">
-                            LLM Model: Configurable (default: Infomaniak qwen3)<br>
-                            Max Tokens: 4000<br>
-                            Temperature: Configurable<br>
-                            Processing Time: ~10-20 seconds
+                            AI Model: LLM (configurable vendor)<br>
+                            Compliance: ICD-10-GM + TARMED guidelines<br>
+                            Processing: ~10-20 seconds
                         </div>
                     </div>
                 </div>
@@ -715,16 +707,16 @@
                     <div class="details">
                         <p><strong>Flow:</strong></p>
                         <ol style="margin-left: 20px;">
-                            <li>Frontend redirects to document editor</li>
-                            <li>TipTap editor loads ProseMirror JSON</li>
-                            <li>Doctor can edit like in Word/Google Docs</li>
-                            <li>Auto-save every 5 seconds: <code>PATCH /documents/:id</code></li>
-                            <li>Document status: DRAFT → APPROVED</li>
+                            <li>Document opens in rich-text editor</li>
+                            <li>Doctor reviews AI-generated content</li>
+                            <li>Full editing capabilities (Word-like experience)</li>
+                            <li>Auto-save ensures no work is lost</li>
+                            <li>Document progresses through workflow states</li>
                         </ol>
                         <div class="code">
-                            Editor: TipTap (based on ProseMirror)<br>
-                            Format: ProseMirror JSON (stored as JSONB in DB)<br>
-                            Features: Bold, Italic, Lists, Headings, Tables
+                            Editor: TipTap (ProseMirror-based)<br>
+                            Features: Formatting, tables, lists, headings<br>
+                            Save: Automatic with manual option
                         </div>
                     </div>
                 </div>
@@ -735,14 +727,15 @@
                         <p><strong>Flow:</strong></p>
                         <ol style="margin-left: 20px;">
                             <li>Doctor clicks "Approve"</li>
-                            <li><code>PATCH /documents/:id</code> with status: APPROVED</li>
-                            <li>Document history entry created (DocumentHistory table)</li>
-                            <li>Document linked to consultation (consultationId)</li>
+                            <li>Document status updated to approved</li>
+                            <li>Audit trail entry recorded</li>
+                            <li>Document linked to consultation record</li>
                             <li>Ready for export (PDF, print)</li>
                         </ol>
                         <div class="code">
-                            Final Status: APPROVED<br>
-                            Audit Trail: DocumentHistory table tracks all changes
+                            Workflow: Draft → Pending → Approved<br>
+                            Audit: Complete history of all changes<br>
+                            Export: PDF generation available
                         </div>
                     </div>
                 </div>
