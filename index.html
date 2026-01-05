@@ -839,99 +839,116 @@
 
         <!-- DATABASE TAB -->
         <div class="content-section" id="database">
-            <h2>Data Model Overview</h2>
+            <h2>Data Management Capabilities</h2>
 
-            <!-- Visual Entity-Relationship Diagram -->
+            <!-- Visual Capabilities Diagram -->
             <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 16px; padding: 30px; margin-bottom: 30px;">
-                <h3 style="text-align: center; color: #1e3c72; margin-bottom: 20px;">📈 Entity Relationships</h3>
-                <svg viewBox="0 0 800 300" style="max-width: 100%; height: auto;">
-                    <!-- Organisation -->
-                    <rect x="50" y="100" width="120" height="60" rx="8" fill="#673AB7" stroke="#512DA8" stroke-width="2"/>
-                    <text x="110" y="125" text-anchor="middle" fill="white" font-weight="bold" font-size="13">🏢 Organisation</text>
-                    <text x="110" y="145" text-anchor="middle" fill="white" font-size="10">Multi-tenant</text>
+                <svg viewBox="0 0 800 280" style="max-width: 100%; height: auto;">
+                    <!-- Central Database -->
+                    <ellipse cx="400" cy="140" rx="100" ry="60" fill="#1e3c72" stroke="#2a5298" stroke-width="3"/>
+                    <text x="400" y="130" text-anchor="middle" fill="white" font-weight="bold" font-size="16">🗄️ PostgreSQL</text>
+                    <text x="400" y="155" text-anchor="middle" fill="white" font-size="12">Switzerland North</text>
                     
-                    <!-- User -->
-                    <rect x="220" y="30" width="120" height="60" rx="8" fill="#2196F3" stroke="#1976D2" stroke-width="2"/>
-                    <text x="280" y="55" text-anchor="middle" fill="white" font-weight="bold" font-size="13">👤 User</text>
-                    <text x="280" y="75" text-anchor="middle" fill="white" font-size="10">Doctor / Admin</text>
+                    <!-- Capability bubbles -->
+                    <circle cx="150" cy="60" r="50" fill="#4CAF50" stroke="#388E3C" stroke-width="2"/>
+                    <text x="150" y="55" text-anchor="middle" fill="white" font-weight="bold" font-size="11">🏢 Multi-</text>
+                    <text x="150" y="72" text-anchor="middle" fill="white" font-size="11">Tenant</text>
                     
-                    <!-- Patient -->
-                    <rect x="220" y="170" width="120" height="60" rx="8" fill="#4CAF50" stroke="#388E3C" stroke-width="2"/>
-                    <text x="280" y="195" text-anchor="middle" fill="white" font-weight="bold" font-size="13">👥 Patient</text>
-                    <text x="280" y="215" text-anchor="middle" fill="white" font-size="10">AHV + Insurance</text>
+                    <circle cx="650" cy="60" r="50" fill="#2196F3" stroke="#1976D2" stroke-width="2"/>
+                    <text x="650" y="55" text-anchor="middle" fill="white" font-weight="bold" font-size="11">🔍 Semantic</text>
+                    <text x="650" y="72" text-anchor="middle" fill="white" font-size="11">Search</text>
                     
-                    <!-- Consultation -->
-                    <rect x="400" y="100" width="120" height="60" rx="8" fill="#FF9800" stroke="#F57C00" stroke-width="2"/>
-                    <text x="460" y="125" text-anchor="middle" fill="white" font-weight="bold" font-size="13">📅 Consultation</text>
-                    <text x="460" y="145" text-anchor="middle" fill="white" font-size="10">+ Transcription</text>
+                    <circle cx="150" cy="220" r="50" fill="#FF9800" stroke="#F57C00" stroke-width="2"/>
+                    <text x="150" y="215" text-anchor="middle" fill="white" font-weight="bold" font-size="11">📝 Audit</text>
+                    <text x="150" y="232" text-anchor="middle" fill="white" font-size="11">Trail</text>
                     
-                    <!-- Document -->
-                    <rect x="580" y="100" width="120" height="60" rx="8" fill="#E91E63" stroke="#C2185B" stroke-width="2"/>
-                    <text x="640" y="125" text-anchor="middle" fill="white" font-weight="bold" font-size="13">📄 Document</text>
-                    <text x="640" y="145" text-anchor="middle" fill="white" font-size="10">20 Types</text>
+                    <circle cx="650" cy="220" r="50" fill="#9C27B0" stroke="#7B1FA2" stroke-width="2"/>
+                    <text x="650" y="215" text-anchor="middle" fill="white" font-weight="bold" font-size="11">🔐 Role-Based</text>
+                    <text x="650" y="232" text-anchor="middle" fill="white" font-size="11">Access</text>
                     
-                    <!-- Audit Trail -->
-                    <rect x="580" y="200" width="120" height="50" rx="8" fill="#607D8B" stroke="#455A64" stroke-width="2"/>
-                    <text x="640" y="225" text-anchor="middle" fill="white" font-weight="bold" font-size="12">📝 Audit Trail</text>
+                    <circle cx="80" cy="140" r="45" fill="#E91E63" stroke="#C2185B" stroke-width="2"/>
+                    <text x="80" y="135" text-anchor="middle" fill="white" font-weight="bold" font-size="10">🗑️ Soft</text>
+                    <text x="80" y="150" text-anchor="middle" fill="white" font-size="10">Delete</text>
                     
-                    <!-- Relationship lines -->
-                    <line x1="170" y1="130" x2="220" y2="60" stroke="#333" stroke-width="2"/>
-                    <line x1="170" y1="130" x2="220" y2="200" stroke="#333" stroke-width="2"/>
-                    <line x1="340" y1="60" x2="400" y2="130" stroke="#333" stroke-width="2"/>
-                    <line x1="340" y1="200" x2="400" y2="130" stroke="#333" stroke-width="2"/>
-                    <line x1="520" y1="130" x2="580" y2="130" stroke="#333" stroke-width="2"/>
-                    <line x1="640" y1="160" x2="640" y2="200" stroke="#333" stroke-width="2"/>
-                    <line x1="340" y1="200" x2="580" y2="130" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/>
+                    <circle cx="720" cy="140" r="45" fill="#00BCD4" stroke="#0097A7" stroke-width="2"/>
+                    <text x="720" y="135" text-anchor="middle" fill="white" font-weight="bold" font-size="10">🔒 Encrypted</text>
+                    <text x="720" y="150" text-anchor="middle" fill="white" font-size="10">Storage</text>
                     
-                    <!-- Cardinality labels -->
-                    <text x="185" y="85" fill="#666" font-size="10">1:N</text>
-                    <text x="185" y="175" fill="#666" font-size="10">1:N</text>
-                    <text x="365" y="90" fill="#666" font-size="10">1:N</text>
-                    <text x="365" y="175" fill="#666" font-size="10">1:N</text>
-                    <text x="545" y="120" fill="#666" font-size="10">1:N</text>
+                    <!-- Connection lines -->
+                    <line x1="200" y1="75" x2="310" y2="110" stroke="#666" stroke-width="2"/>
+                    <line x1="600" y1="75" x2="490" y2="110" stroke="#666" stroke-width="2"/>
+                    <line x1="200" y1="205" x2="310" y2="170" stroke="#666" stroke-width="2"/>
+                    <line x1="600" y1="205" x2="490" y2="170" stroke="#666" stroke-width="2"/>
+                    <line x1="125" y1="140" x2="300" y2="140" stroke="#666" stroke-width="2"/>
+                    <line x1="675" y1="140" x2="500" y2="140" stroke="#666" stroke-width="2"/>
                 </svg>
             </div>
 
             <div class="service-grid">
                 <div class="service-card">
-                    <h3>🏢 Core Business Entities</h3>
-                    <ul style="margin-left: 20px; margin-top: 15px; line-height: 1.8;">
-                        <li><strong>Organisation</strong> → Multi-tenant isolation</li>
-                        <li><strong>User</strong> → Doctors with roles & specialties</li>
-                        <li><strong>Patient</strong> → Demographics + Swiss AHV</li>
-                        <li><strong>Consultation</strong> → Linked to transcription</li>
-                        <li><strong>Document</strong> → 20 medical document types</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <h3>🧠 AI Processing Entities</h3>
-                    <ul style="margin-left: 20px; margin-top: 15px; line-height: 1.8;">
-                        <li><strong>Transcription</strong> → Audio → Text conversion</li>
-                        <li><strong>Completion</strong> → LLM generation tracking</li>
-                        <li><strong>Embedding</strong> → Semantic search vectors</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <h3>🔒 Compliance Features</h3>
-                    <ul style="margin-left: 20px; margin-top: 15px; line-height: 1.8;">
-                        <li><strong>Audit Trail</strong> → Every document change logged</li>
-                        <li><strong>Soft Delete</strong> → Data recovery capability</li>
-                        <li><strong>Schema Isolation</strong> → Service separation</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <h3>🛠️ Technical Stack</h3>
+                    <h3>🏢 Multi-Tenant Isolation</h3>
+                    <p style="margin-top: 10px; line-height: 1.6;">
+                        Complete data separation between medical practices. Each organisation's data is logically isolated with enforced access boundaries.
+                    </p>
                     <div class="tech-stack" style="margin-top: 15px;">
-                        <span class="tech-badge">PostgreSQL 15</span>
-                        <span class="tech-badge">Prisma ORM</span>
+                        <span class="tech-badge">Row-Level Security</span>
+                        <span class="tech-badge">Organisation Scoping</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <h3>🔍 AI-Powered Search</h3>
+                    <p style="margin-top: 10px; line-height: 1.6;">
+                        Semantic search across medical documents using vector embeddings. Find relevant patient history using natural language queries.
+                    </p>
+                    <div class="tech-stack" style="margin-top: 15px;">
                         <span class="tech-badge">pgvector</span>
-                        <span class="tech-badge">UUID Primary Keys</span>
+                        <span class="tech-badge">384-dim Embeddings</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <h3>📝 Complete Audit Trail</h3>
+                    <p style="margin-top: 10px; line-height: 1.6;">
+                        Every document modification is logged with timestamp, user, and action type. Full history for compliance and accountability.
+                    </p>
+                    <div class="tech-stack" style="margin-top: 15px;">
+                        <span class="tech-badge">Immutable Logs</span>
+                        <span class="tech-badge">User Attribution</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <h3>🔐 Access Control</h3>
+                    <p style="margin-top: 10px; line-height: 1.6;">
+                        Role-based permissions from System Admin to standard users. Specialty-specific access and organisation-level administration.
+                    </p>
+                    <div class="tech-stack" style="margin-top: 15px;">
+                        <span class="tech-badge">4 Permission Levels</span>
+                        <span class="tech-badge">JWT Claims</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <h3>🗑️ Data Recovery</h3>
+                    <p style="margin-top: 10px; line-height: 1.6;">
+                        Soft delete pattern ensures no accidental data loss. Records can be recovered within retention period. Hard delete for GDPR compliance.
+                    </p>
+                    <div class="tech-stack" style="margin-top: 15px;">
+                        <span class="tech-badge">Soft Delete</span>
+                        <span class="tech-badge">GDPR Right to Erasure</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <h3>🇨🇭 Swiss Data Residency</h3>
+                    <p style="margin-top: 10px; line-height: 1.6;">
+                        All data stored exclusively in Azure Switzerland North (Zürich). Encrypted at rest and in transit. FADP & GDPR compliant.
+                    </p>
+                    <div class="tech-stack" style="margin-top: 15px;">
+                        <span class="tech-badge">AES-256 Encryption</span>
+                        <span class="tech-badge">TLS 1.3</span>
                     </div>
                 </div>
             </div>
 
             <div class="info-box">
-                <strong>✅ Semantic Search Ready:</strong> pgvector extension enables AI-powered similarity search across documents and consultations.
+                <strong>🛠️ Technology Foundation:</strong> PostgreSQL 15 with Prisma ORM • Automated migrations • UUID primary keys • Service-level schema isolation
             </div>
         </div>
 
