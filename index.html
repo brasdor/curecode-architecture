@@ -373,7 +373,6 @@
             <button class="tab" onclick="showTab('architecture')">🏗️ Architecture</button>
             <button class="tab" onclick="showTab('dataflow')">🔄 Data Flow</button>
             <button class="tab" onclick="showTab('database')">💾 Database</button>
-            <button class="tab" onclick="showTab('apis')">🔌 API Endpoints</button>
             <button class="tab" onclick="showTab('deployment')">☁️ Azure Deployment</button>
         </div>
 
@@ -512,9 +511,9 @@
                             <span class="tech-badge">PostgreSQL</span>
                         </div>
                         <div class="code" style="margin-top: 15px;">
-                            Port: 3000<br>
-                            Database: curecode_app_service schema<br>
-                            Swagger: /api
+                            Deployment: Azure App Service (Docker)<br>
+                            Database: PostgreSQL with Prisma ORM<br>
+                            API Docs: OpenAPI/Swagger
                         </div>
                     </div>
                     <div class="service-card">
@@ -529,13 +528,13 @@
                         </ul>
                         <div class="tech-stack">
                             <span class="tech-badge">NestJS</span>
-                            <span class="tech-badge">OpenAI API</span>
+                            <span class="tech-badge">LLM API</span>
                             <span class="tech-badge">Azure Blob</span>
                             <span class="tech-badge">Prisma ORM</span>
                         </div>
                         <div class="code" style="margin-top: 15px;">
-                            Port: 3001<br>
-                            Database: curecode_ai_service schema<br>
+                            Deployment: Azure App Service (Docker)<br>
+                            Storage: Azure Blob for audio/documents<br>
                             Max Upload: 50MB
                         </div>
                     </div>
@@ -549,10 +548,10 @@
                 <div class="service-grid">
                     <div class="service-card">
                         <h3>PostgreSQL Database</h3>
-                        <p><strong>2 Separate Schemas:</strong></p>
+                        <p><strong>Schema Isolation:</strong></p>
                         <ul style="margin-left: 20px; margin-top: 10px;">
-                            <li><code>curecode_app_service</code> schema</li>
-                            <li><code>curecode_ai_service</code> schema</li>
+                            <li>Business logic schema (patients, docs, users)</li>
+                            <li>AI processing schema (transcriptions, completions)</li>
                         </ul>
                         <div class="tech-stack">
                             <span class="tech-badge">PostgreSQL 15</span>
@@ -754,13 +753,13 @@
             <h2>Database Schema (PostgreSQL + Prisma)</h2>
 
             <div class="warning-box">
-                <strong>⚠️ Two Separate Schemas:</strong><br>
-                1. <code>curecode_app_service</code> - Business logic (Patients, Docs, Users)<br>
-                2. <code>curecode_ai_service</code> - AI processing (Transcriptions, Completions)
+                <strong>⚠️ Schema Separation:</strong><br>
+                1. <strong>Business Schema</strong> - Core domain (Patients, Documents, Users, Organisations)<br>
+                2. <strong>AI Schema</strong> - AI processing (Transcriptions, LLM Completions, Embeddings)
             </div>
 
             <div class="database-schema">
-                <h3>Schema 1: curecode_app_service</h3>
+                <h3>Business Schema (Core Domain)</h3>
 
                 <div class="schema-table">
                     <div class="table-name">User</div>
@@ -984,7 +983,7 @@
             </div>
 
             <div class="database-schema">
-                <h3>Schema 2: curecode_ai_service</h3>
+                <h3>AI Schema (Processing)</h3>
 
                 <div class="schema-table">
                     <div class="table-name">Transcription</div>
@@ -1110,158 +1109,6 @@
             </div>
         </div>
 
-        <!-- APIs TAB -->
-        <div class="content-section" id="apis">
-            <h2>API Endpoints</h2>
-
-            <div class="architecture-layer">
-                <h2>curecode-app-service (Port 3000)</h2>
-
-                <h3 style="margin-top: 20px;">Authentication</h3>
-                <div class="api-endpoint">
-                    <span class="method POST">POST</span> /auth/login
-                    <div style="margin-top: 8px; color: #666;">Body: { email, password } → Returns: { accessToken, user }</div>
-                </div>
-                <div class="api-endpoint">
-                    <span class="method POST">POST</span> /auth/refresh
-                    <div style="margin-top: 8px; color: #666;">Refreshes JWT token</div>
-                </div>
-
-                <h3 style="margin-top: 20px;">Patients</h3>
-                <div class="api-endpoint">
-                    <span class="method GET">GET</span> /patients
-                    <div style="margin-top: 8px; color: #666;">Returns: Patient[] for current organisation</div>
-                </div>
-                <div class="api-endpoint">
-                    <span class="method GET">GET</span> /patients/:id
-                    <div style="margin-top: 8px; color: #666;">Returns: Patient with documents & consultations</div>
-                </div>
-                <div class="api-endpoint">
-                    <span class="method POST">POST</span> /patients
-                    <div style="margin-top: 8px; color: #666;">Body: { firstName, lastName, ahvNumber, birthDate, ... }</div>
-                </div>
-                <div class="api-endpoint">
-                    <span class="method PATCH">PATCH</span> /patients/:id
-                    <div style="margin-top: 8px; color: #666;">Update patient data</div>
-                </div>
-                <div class="api-endpoint">
-                    <span class="method DELETE">DELETE</span> /patients/:id
-                    <div style="margin-top: 8px; color: #666;">Soft delete (sets deletedAt)</div>
-                </div>
-
-                <h3 style="margin-top: 20px;">Consultations</h3>
-                <div class="api-endpoint">
-                    <span class="method GET">GET</span> /consultations
-                    <div style="margin-top: 8px; color: #666;">Returns: Consultation[] with patient data</div>
-                </div>
-                <div class="api-endpoint">
-                    <span class="method GET">GET</span> /consultations/:id
-                    <div style="margin-top: 8px; color: #666;">Returns: Consultation with transcription data</div>
-                </div>
-                <div class="api-endpoint">
-                    <span class="method POST">POST</span> /consultations
-                    <div style="margin-top: 8px; color: #666;">Body: { patientId, date } → Returns: { consultationId }</div>
-                </div>
-                <div class="api-endpoint">
-                    <span class="method PATCH">PATCH</span> /consultations/:id
-                    <div style="margin-top: 8px; color: #666;">Update consultation (link transcriptionId)</div>
-                </div>
-                <div class="api-endpoint">
-                    <span class="method DELETE">DELETE</span> /consultations/:id
-                    <div style="margin-top: 8px; color: #666;">Soft delete</div>
-                </div>
-
-                <h3 style="margin-top: 20px;">Documents</h3>
-                <div class="api-endpoint">
-                    <span class="method GET">GET</span> /documents
-                    <div style="margin-top: 8px; color: #666;">Returns: Document[] with author & patient</div>
-                </div>
-                <div class="api-endpoint">
-                    <span class="method GET">GET</span> /documents/:id
-                    <div style="margin-top: 8px; color: #666;">Returns: Document with full history</div>
-                </div>
-                <div class="api-endpoint">
-                    <span class="method POST">POST</span> /documents/generate
-                    <div style="margin-top: 8px; color: #666;">
-                        Body: {<br>
-                        &nbsp;&nbsp;transcriptionId: string,<br>
-                        &nbsp;&nbsp;documentType: DocumentType,<br>
-                        &nbsp;&nbsp;medicalDomain: string,<br>
-                        &nbsp;&nbsp;sections: string[],<br>
-                        &nbsp;&nbsp;patientId: string,<br>
-                        &nbsp;&nbsp;consultationId?: string<br>
-                        }<br>
-                        → Calls AI service, generates document
-                    </div>
-                </div>
-                <div class="api-endpoint">
-                    <span class="method PATCH">PATCH</span> /documents/:id
-                    <div style="margin-top: 8px; color: #666;">Update document content (auto-save)</div>
-                </div>
-                <div class="api-endpoint">
-                    <span class="method DELETE">DELETE</span> /documents/:id
-                    <div style="margin-top: 8px; color: #666;">Soft delete</div>
-                </div>
-            </div>
-
-            <div class="architecture-layer">
-                <h2>curecode-ai-service (Port 3001)</h2>
-
-                <h3 style="margin-top: 20px;">Transcriptions</h3>
-                <div class="api-endpoint">
-                    <span class="method POST">POST</span> /transcriptions
-                    <div style="margin-top: 8px; color: #666;">
-                        Body: multipart/form-data with audio file<br>
-                        → Uploads to Azure Blob, starts Whisper transcription<br>
-                        → Returns: { id, state: 'PENDING' }
-                    </div>
-                </div>
-                <div class="api-endpoint">
-                    <span class="method GET">GET</span> /transcriptions/:id
-                    <div style="margin-top: 8px; color: #666;">
-                        Polling endpoint → Returns: { id, state, transcriptionContent, completedAt }
-                    </div>
-                </div>
-                <div class="api-endpoint">
-                    <span class="method GET">GET</span> /transcriptions
-                    <div style="margin-top: 8px; color: #666;">List all transcriptions for tenant</div>
-                </div>
-
-                <h3 style="margin-top: 20px;">Completions (LLM)</h3>
-                <div class="api-endpoint">
-                    <span class="method POST">POST</span> /completions
-                    <div style="margin-top: 8px; color: #666;">
-                        Body: {<br>
-                        &nbsp;&nbsp;documentType: string,<br>
-                        &nbsp;&nbsp;medicalDomain: string,<br>
-                        &nbsp;&nbsp;transcriptionContent: string,<br>
-                        &nbsp;&nbsp;sections: string[],<br>
-                        &nbsp;&nbsp;doctorInfo: { ... }<br>
-                        }<br>
-                        → Generates medical report with LLM
-                    </div>
-                </div>
-                <div class="api-endpoint">
-                    <span class="method GET">GET</span> /completions/:id
-                    <div style="margin-top: 8px; color: #666;">Get completion result</div>
-                </div>
-
-                <h3 style="margin-top: 20px;">Health Check</h3>
-                <div class="api-endpoint">
-                    <span class="method GET">GET</span> /health
-                    <div style="margin-top: 8px; color: #666;">Full health check (DB, Lock, LLM, Transcription)</div>
-                </div>
-                <div class="api-endpoint">
-                    <span class="method GET">GET</span> /health/live
-                    <div style="margin-top: 8px; color: #666;">Liveness probe (DB, Lock only)</div>
-                </div>
-                <div class="api-endpoint">
-                    <span class="method GET">GET</span> /health/ready
-                    <div style="margin-top: 8px; color: #666;">Readiness probe</div>
-                </div>
-            </div>
-        </div>
-
         <!-- DEPLOYMENT TAB -->
         <div class="content-section" id="deployment">
             <h2>Azure Switzerland North Deployment</h2>
@@ -1286,32 +1133,29 @@
                 <h2>🚀 Production Environment</h2>
                 <div class="service-grid">
                     <div class="service-card">
-                        <h3>app-curecode-client-prod</h3>
-                        <p><strong>Frontend (React SPA)</strong></p>
+                        <h3>Frontend App</h3>
+                        <p><strong>React SPA</strong></p>
                         <div class="code" style="margin-top: 10px;">
-                            URL: https://[redacted]-client-prod.azurewebsites.net<br>
-                            Container: [acr]/curecode-app-client:prod<br>
-                            Port: 8080<br>
+                            Runtime: Docker Container<br>
+                            Image Tag: :prod<br>
                             Status: ✅ Running
                         </div>
                     </div>
                     <div class="service-card">
-                        <h3>app-curecode-app-prod</h3>
-                        <p><strong>Main Backend API</strong></p>
+                        <h3>Backend API</h3>
+                        <p><strong>Main Business Logic</strong></p>
                         <div class="code" style="margin-top: 10px;">
-                            URL: https://[redacted]-app-prod.azurewebsites.net<br>
-                            Container: [acr]/curecode-app-service:prod<br>
-                            Port: 3000<br>
+                            Runtime: Docker Container<br>
+                            Image Tag: :prod<br>
                             Status: ✅ Running
                         </div>
                     </div>
                     <div class="service-card">
-                        <h3>app-curecode-ai-prod</h3>
-                        <p><strong>AI Processing Service</strong></p>
+                        <h3>AI Service</h3>
+                        <p><strong>AI Processing</strong></p>
                         <div class="code" style="margin-top: 10px;">
-                            URL: https://[redacted]-ai-prod.azurewebsites.net<br>
-                            Container: [acr]/curecode-ai-service:prod<br>
-                            Port: 3001<br>
+                            Runtime: Docker Container<br>
+                            Image Tag: :prod<br>
                             Status: ✅ Running
                         </div>
                     </div>
@@ -1322,32 +1166,29 @@
                 <h2>🧪 Staging Environment</h2>
                 <div class="service-grid">
                     <div class="service-card">
-                        <h3>app-curecode-client-staging</h3>
-                        <p><strong>Frontend (React SPA)</strong></p>
+                        <h3>Frontend App</h3>
+                        <p><strong>React SPA</strong></p>
                         <div class="code" style="margin-top: 10px;">
-                            URL: https://[redacted]-client-staging.azurewebsites.net<br>
-                            Container: [acr]/curecode-app-client:staging<br>
-                            Port: 8080<br>
+                            Runtime: Docker Container<br>
+                            Image Tag: :staging<br>
                             Status: ✅ Running
                         </div>
                     </div>
                     <div class="service-card">
-                        <h3>app-curecode-app-staging</h3>
-                        <p><strong>Main Backend API</strong></p>
+                        <h3>Backend API</h3>
+                        <p><strong>Main Business Logic</strong></p>
                         <div class="code" style="margin-top: 10px;">
-                            URL: https://[redacted]-app-staging.azurewebsites.net<br>
-                            Container: [acr]/curecode-app-service:staging<br>
-                            Port: 3000<br>
+                            Runtime: Docker Container<br>
+                            Image Tag: :staging<br>
                             Status: ✅ Running
                         </div>
                     </div>
                     <div class="service-card">
-                        <h3>app-curecode-ai-staging</h3>
-                        <p><strong>AI Processing Service</strong></p>
+                        <h3>AI Service</h3>
+                        <p><strong>AI Processing</strong></p>
                         <div class="code" style="margin-top: 10px;">
-                            URL: https://[redacted]-ai-staging.azurewebsites.net<br>
-                            Container: [acr]/curecode-ai-service:staging<br>
-                            Port: 3001<br>
+                            Runtime: Docker Container<br>
+                            Image Tag: :staging<br>
                             Status: ✅ Running
                         </div>
                     </div>
@@ -1359,14 +1200,12 @@
                 <div class="service-card">
                     <h3>Azure Database for PostgreSQL Flexible Server</h3>
                     <div class="code" style="margin-top: 10px;">
-                        Host: [redacted].postgres.database.azure.com<br>
-                        Port: 5432<br>
+                        Hosting: Azure Database for PostgreSQL Flexible Server<br>
                         Version: PostgreSQL 15<br>
-                        Extensions: pgvector, pg_trgm<br>
-                        Schemas: curecode_app_service, curecode_ai_service<br>
-                        Compute: B1ms (1 vCore, 2 GiB RAM)<br>
-                        Storage: 32 GiB<br>
-                        Backup: 7 days retention
+                        Extensions: pgvector (semantic search), pg_trgm<br>
+                        Architecture: Multi-schema isolation<br>
+                        Compute: B1ms (scalable)<br>
+                        Backup: Automated with retention policy
                     </div>
                 </div>
             </div>
@@ -1374,12 +1213,12 @@
             <div class="architecture-layer">
                 <h2>Storage</h2>
                 <div class="service-card">
-                    <h3>Azure Storage Account</h3>
+                    <h3>Azure Blob Storage</h3>
                     <div class="code" style="margin-top: 10px;">
-                        Account: [redacted]<br>
-                        Containers: audio-files, documents<br>
-                        Replication: LRS (Locally Redundant)<br>
-                        Access Tier: Hot
+                        Purpose: Audio files, uploaded documents, organisation assets<br>
+                        Encryption: Server-side encryption at rest<br>
+                        Access: Private containers with SAS tokens<br>
+                        Region: Switzerland North (data residency)
                     </div>
                 </div>
             </div>
@@ -1407,17 +1246,13 @@
                             <li>Deploy to Staging App Services</li>
                         </ol>
                         <div class="code" style="margin-top: 10px;">
-                            Registry: [redacted].azurecr.io<br>
+                            Registry: Azure Container Registry<br>
                             <br>
-                            Production Tags:<br>
-                            &nbsp;&nbsp;curecode-app-client:prod<br>
-                            &nbsp;&nbsp;curecode-app-service:prod<br>
-                            &nbsp;&nbsp;curecode-ai-service:prod<br>
+                            Image Tagging Strategy:<br>
+                            &nbsp;&nbsp;• Production: :prod tag<br>
+                            &nbsp;&nbsp;• Staging: :staging tag<br>
                             <br>
-                            Staging Tags:<br>
-                            &nbsp;&nbsp;curecode-app-client:staging<br>
-                            &nbsp;&nbsp;curecode-app-service:staging<br>
-                            &nbsp;&nbsp;curecode-ai-service:staging
+                            Services: Frontend, Backend API, AI Service
                         </div>
                     </div>
                 </div>
@@ -1430,9 +1265,9 @@
             </div>
 
             <div class="warning-box">
-                <strong>🔒 Environment Variables:</strong><br>
-                All API keys (OpenAI, Azure Blob) are stored in Azure App Service Environment Variables.<br>
-                No secrets in code or Git repository.
+                <strong>🔒 Secrets Management:</strong><br>
+                All sensitive configuration (API keys, connection strings) stored securely in Azure App Service.<br>
+                No secrets in code, Git repository, or Docker images.
             </div>
         </div>
     </div>
