@@ -196,6 +196,13 @@
             margin-bottom: 20px;
             border-left: 5px solid #2a5298;
             position: relative;
+            transition: all 0.3s;
+        }
+
+        .flow-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left-color: #1e3c72;
         }
 
         .flow-step::after {
@@ -390,12 +397,8 @@
                     <div class="label">Document Types</div>
                 </div>
                 <div class="stat-card">
-                    <div class="number">4+</div>
+                    <div class="number">6</div>
                     <div class="label">Medical Specialties</div>
-                </div>
-                <div class="stat-card">
-                    <div class="number">2+</div>
-                    <div class="label">Active Doctors</div>
                 </div>
             </div>
 
@@ -504,6 +507,19 @@
             <!-- Visual Architecture Diagram -->
             <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 16px; padding: 30px; margin-bottom: 30px; text-align: center;">
                 <svg viewBox="0 0 800 400" style="max-width: 100%; height: auto;">
+                    <!-- Layer Labels (Left Side) -->
+                    <text x="30" y="65" fill="#1e3c72" font-weight="bold" font-size="13" text-anchor="start">PRESENTATION</text>
+                    <text x="30" y="80" fill="#666" font-size="10" text-anchor="start">Layer 1</text>
+                    <line x1="100" y1="60" x2="240" y2="60" stroke="#ccc" stroke-width="1" stroke-dasharray="4,4"/>
+                    
+                    <text x="30" y="195" fill="#1e3c72" font-weight="bold" font-size="13" text-anchor="start">BUSINESS</text>
+                    <text x="30" y="210" fill="#666" font-size="10" text-anchor="start">Layer 2</text>
+                    <line x1="85" y1="195" x2="100" y2="195" stroke="#ccc" stroke-width="1" stroke-dasharray="4,4"/>
+                    
+                    <text x="30" y="330" fill="#1e3c72" font-weight="bold" font-size="13" text-anchor="start">DATA</text>
+                    <text x="30" y="345" fill="#666" font-size="10" text-anchor="start">Layer 3</text>
+                    <line x1="60" y1="330" x2="100" y2="330" stroke="#ccc" stroke-width="1" stroke-dasharray="4,4"/>
+                    
                     <!-- Layer 1: Frontend -->
                     <rect x="250" y="20" width="300" height="80" rx="12" fill="#4CAF50" stroke="#388E3C" stroke-width="2"/>
                     <text x="400" y="50" text-anchor="middle" fill="white" font-weight="bold" font-size="16">🎯 Frontend</text>
@@ -1045,7 +1061,7 @@
                         Version: PostgreSQL 15<br>
                         Extensions: pgvector (semantic search), pg_trgm<br>
                         Architecture: Multi-schema isolation<br>
-                        Compute: B1ms (scalable)<br>
+                        Compute: Production tier (auto-scaling)<br>
                         Backup: Automated with retention policy
                     </div>
                 </div>

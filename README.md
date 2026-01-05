@@ -72,7 +72,7 @@ The platform follows a **three-tier microservices architecture**:
 | Feature | Description |
 |---------|-------------|
 | **20 Document Types** | Medical reports, referrals, therapy notes, and more |
-| **4+ Medical Specialties** | Neurology, Orthopedics, Psychology, General Medicine |
+| **6 Medical Specialties** | Neurology, Orthopedics, Psychology, General Medicine, and more |
 | **Swiss Compliance** | ICD-10-GM, TARMED, FADP, GDPR compliant |
 | **Multi-tenant** | Organisation-based data isolation |
 | **Audit Trail** | Complete document history tracking |
