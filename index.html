@@ -428,11 +428,11 @@
                     </div>
                     <div class="service-card">
                         <h3>AI Services</h3>
-                        <p><strong>OpenAI Integration</strong></p>
+                        <p><strong>Intelligent Processing</strong></p>
                         <div class="tech-stack">
-                            <span class="tech-badge">Whisper API</span>
-                            <span class="tech-badge">LLM (Configurable)</span>
-                            <span class="tech-badge">Infomaniak AI</span>
+                            <span class="tech-badge">Speech-to-Text</span>
+                            <span class="tech-badge">PDF/Word Extraction</span>
+                            <span class="tech-badge">AI Text Generation</span>
                         </div>
                     </div>
                     <div class="service-card">
@@ -453,11 +453,100 @@
                 <strong>✅ Swiss Compliance:</strong> ICD-10-GM, TARMED, FADP, GDPR<br>
                 <strong>✅ Data Residency:</strong> All data remains in Switzerland (Azure Switzerland North)
             </div>
+
+            <div class="architecture-layer">
+                <h2>✨ Key Features & Differentiators</h2>
+                <div class="service-grid">
+                    <div class="service-card">
+                        <h3>🇨🇭 Swiss Data Sovereignty</h3>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>100% Swiss-hosted infrastructure</li>
+                            <li>Azure Switzerland North (Zürich)</li>
+                            <li>FADP & GDPR compliant by design</li>
+                            <li>No data leaves Switzerland</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>🎯 Medical Domain Expertise</h3>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>20 Swiss medical document types</li>
+                            <li>ICD-10-GM diagnosis coding</li>
+                            <li>TARMED billing code integration</li>
+                            <li>Swiss AHV number validation</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>⚡ Efficiency Gains</h3>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Audio → Document in ~3-5 minutes</li>
+                            <li>AI-assisted medical terminology</li>
+                            <li>Rich-text editor with auto-save</li>
+                            <li>Multi-specialty support</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>🔒 Enterprise Security</h3>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>JWT-based authentication</li>
+                            <li>Role-based access control</li>
+                            <li>Complete audit trail</li>
+                            <li>Encrypted storage at rest</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- ARCHITECTURE TAB -->
         <div class="content-section" id="architecture">
             <h2>Three-Tier Microservices Architecture</h2>
+
+            <!-- Visual Architecture Diagram -->
+            <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 16px; padding: 30px; margin-bottom: 30px; text-align: center;">
+                <svg viewBox="0 0 800 400" style="max-width: 100%; height: auto;">
+                    <!-- Layer 1: Frontend -->
+                    <rect x="250" y="20" width="300" height="80" rx="12" fill="#4CAF50" stroke="#388E3C" stroke-width="2"/>
+                    <text x="400" y="50" text-anchor="middle" fill="white" font-weight="bold" font-size="16">🎯 Frontend</text>
+                    <text x="400" y="75" text-anchor="middle" fill="white" font-size="12">React SPA • TipTap Editor • Tailwind</text>
+                    
+                    <!-- Arrow 1 -->
+                    <path d="M400 100 L400 140" stroke="#2a5298" stroke-width="3" marker-end="url(#arrowhead)"/>
+                    <text x="420" y="125" fill="#666" font-size="11">REST API</text>
+                    
+                    <!-- Layer 2: Backend Services -->
+                    <rect x="100" y="150" width="250" height="90" rx="12" fill="#2196F3" stroke="#1976D2" stroke-width="2"/>
+                    <text x="225" y="180" text-anchor="middle" fill="white" font-weight="bold" font-size="14">⚙️ App Service</text>
+                    <text x="225" y="200" text-anchor="middle" fill="white" font-size="11">Business Logic • Auth</text>
+                    <text x="225" y="220" text-anchor="middle" fill="white" font-size="11">Patient • Document CRUD</text>
+                    
+                    <rect x="450" y="150" width="250" height="90" rx="12" fill="#9C27B0" stroke="#7B1FA2" stroke-width="2"/>
+                    <text x="575" y="180" text-anchor="middle" fill="white" font-weight="bold" font-size="14">🧠 AI Service</text>
+                    <text x="575" y="200" text-anchor="middle" fill="white" font-size="11">Speech-to-Text • LLM</text>
+                    <text x="575" y="220" text-anchor="middle" fill="white" font-size="11">Document Generation</text>
+                    
+                    <!-- Arrows 2 -->
+                    <path d="M225 240 L225 280" stroke="#2a5298" stroke-width="3" marker-end="url(#arrowhead)"/>
+                    <path d="M575 240 L575 280" stroke="#2a5298" stroke-width="3" marker-end="url(#arrowhead)"/>
+                    <path d="M350 195 L450 195" stroke="#666" stroke-width="2" stroke-dasharray="5,5"/>
+                    <text x="400" y="188" text-anchor="middle" fill="#666" font-size="10">Internal API</text>
+                    
+                    <!-- Layer 3: Data -->
+                    <rect x="100" y="290" width="250" height="80" rx="12" fill="#FF9800" stroke="#F57C00" stroke-width="2"/>
+                    <text x="225" y="320" text-anchor="middle" fill="white" font-weight="bold" font-size="14">🗄️ PostgreSQL</text>
+                    <text x="225" y="345" text-anchor="middle" fill="white" font-size="11">pgvector • Prisma ORM</text>
+                    
+                    <rect x="450" y="290" width="250" height="80" rx="12" fill="#00BCD4" stroke="#0097A7" stroke-width="2"/>
+                    <text x="575" y="320" text-anchor="middle" fill="white" font-weight="bold" font-size="14">☁️ Azure Blob</text>
+                    <text x="575" y="345" text-anchor="middle" fill="white" font-size="11">Audio • Documents • Assets</text>
+                    
+                    <!-- Arrow marker definition -->
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#2a5298"/>
+                        </marker>
+                    </defs>
+                </svg>
+            </div>
 
             <div class="architecture-layer">
                 <h2>🎨 Layer 1: Frontend (curecode-app-client)</h2>
@@ -528,9 +617,9 @@
                         </ul>
                         <div class="tech-stack">
                             <span class="tech-badge">NestJS</span>
-                            <span class="tech-badge">LLM API</span>
+                            <span class="tech-badge">Speech-to-Text</span>
+                            <span class="tech-badge">Document Extraction</span>
                             <span class="tech-badge">Azure Blob</span>
-                            <span class="tech-badge">Prisma ORM</span>
                         </div>
                         <div class="code" style="margin-top: 15px;">
                             Deployment: Azure App Service (Docker)<br>
@@ -750,362 +839,99 @@
 
         <!-- DATABASE TAB -->
         <div class="content-section" id="database">
-            <h2>Database Schema (PostgreSQL + Prisma)</h2>
+            <h2>Data Model Overview</h2>
 
-            <div class="warning-box">
-                <strong>⚠️ Schema Separation:</strong><br>
-                1. <strong>Business Schema</strong> - Core domain (Patients, Documents, Users, Organisations)<br>
-                2. <strong>AI Schema</strong> - AI processing (Transcriptions, LLM Completions, Embeddings)
+            <!-- Visual Entity-Relationship Diagram -->
+            <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 16px; padding: 30px; margin-bottom: 30px;">
+                <h3 style="text-align: center; color: #1e3c72; margin-bottom: 20px;">📈 Entity Relationships</h3>
+                <svg viewBox="0 0 800 300" style="max-width: 100%; height: auto;">
+                    <!-- Organisation -->
+                    <rect x="50" y="100" width="120" height="60" rx="8" fill="#673AB7" stroke="#512DA8" stroke-width="2"/>
+                    <text x="110" y="125" text-anchor="middle" fill="white" font-weight="bold" font-size="13">🏢 Organisation</text>
+                    <text x="110" y="145" text-anchor="middle" fill="white" font-size="10">Multi-tenant</text>
+                    
+                    <!-- User -->
+                    <rect x="220" y="30" width="120" height="60" rx="8" fill="#2196F3" stroke="#1976D2" stroke-width="2"/>
+                    <text x="280" y="55" text-anchor="middle" fill="white" font-weight="bold" font-size="13">👤 User</text>
+                    <text x="280" y="75" text-anchor="middle" fill="white" font-size="10">Doctor / Admin</text>
+                    
+                    <!-- Patient -->
+                    <rect x="220" y="170" width="120" height="60" rx="8" fill="#4CAF50" stroke="#388E3C" stroke-width="2"/>
+                    <text x="280" y="195" text-anchor="middle" fill="white" font-weight="bold" font-size="13">👥 Patient</text>
+                    <text x="280" y="215" text-anchor="middle" fill="white" font-size="10">AHV + Insurance</text>
+                    
+                    <!-- Consultation -->
+                    <rect x="400" y="100" width="120" height="60" rx="8" fill="#FF9800" stroke="#F57C00" stroke-width="2"/>
+                    <text x="460" y="125" text-anchor="middle" fill="white" font-weight="bold" font-size="13">📅 Consultation</text>
+                    <text x="460" y="145" text-anchor="middle" fill="white" font-size="10">+ Transcription</text>
+                    
+                    <!-- Document -->
+                    <rect x="580" y="100" width="120" height="60" rx="8" fill="#E91E63" stroke="#C2185B" stroke-width="2"/>
+                    <text x="640" y="125" text-anchor="middle" fill="white" font-weight="bold" font-size="13">📄 Document</text>
+                    <text x="640" y="145" text-anchor="middle" fill="white" font-size="10">20 Types</text>
+                    
+                    <!-- Audit Trail -->
+                    <rect x="580" y="200" width="120" height="50" rx="8" fill="#607D8B" stroke="#455A64" stroke-width="2"/>
+                    <text x="640" y="225" text-anchor="middle" fill="white" font-weight="bold" font-size="12">📝 Audit Trail</text>
+                    
+                    <!-- Relationship lines -->
+                    <line x1="170" y1="130" x2="220" y2="60" stroke="#333" stroke-width="2"/>
+                    <line x1="170" y1="130" x2="220" y2="200" stroke="#333" stroke-width="2"/>
+                    <line x1="340" y1="60" x2="400" y2="130" stroke="#333" stroke-width="2"/>
+                    <line x1="340" y1="200" x2="400" y2="130" stroke="#333" stroke-width="2"/>
+                    <line x1="520" y1="130" x2="580" y2="130" stroke="#333" stroke-width="2"/>
+                    <line x1="640" y1="160" x2="640" y2="200" stroke="#333" stroke-width="2"/>
+                    <line x1="340" y1="200" x2="580" y2="130" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/>
+                    
+                    <!-- Cardinality labels -->
+                    <text x="185" y="85" fill="#666" font-size="10">1:N</text>
+                    <text x="185" y="175" fill="#666" font-size="10">1:N</text>
+                    <text x="365" y="90" fill="#666" font-size="10">1:N</text>
+                    <text x="365" y="175" fill="#666" font-size="10">1:N</text>
+                    <text x="545" y="120" fill="#666" font-size="10">1:N</text>
+                </svg>
             </div>
 
-            <div class="database-schema">
-                <h3>Business Schema (Core Domain)</h3>
-
-                <div class="schema-table">
-                    <div class="table-name">User</div>
-                    <div class="schema-field">
-                        <span class="field-name">id</span>
-                        <span class="field-type">String @id @default(uuid())</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">email</span>
-                        <span class="field-type">String @unique</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">firstName</span>
-                        <span class="field-type">String</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">lastName</span>
-                        <span class="field-type">String</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">passwordHash</span>
-                        <span class="field-type">String (bcrypt)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">title</span>
-                        <span class="field-type">String? (Dr. med., Prof. Dr.)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">specialty</span>
-                        <span class="field-type">String? (Neurologie, Orthopädie)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">level</span>
-                        <span class="field-type">Enum (Level1-4, SYSTEM_ADMIN)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">organisationId</span>
-                        <span class="field-type">String? → Organisation</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">documents</span>
-                        <span class="field-type">Document[]</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">consultations</span>
-                        <span class="field-type">Consultation[]</span>
-                    </div>
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3>🏢 Core Business Entities</h3>
+                    <ul style="margin-left: 20px; margin-top: 15px; line-height: 1.8;">
+                        <li><strong>Organisation</strong> → Multi-tenant isolation</li>
+                        <li><strong>User</strong> → Doctors with roles & specialties</li>
+                        <li><strong>Patient</strong> → Demographics + Swiss AHV</li>
+                        <li><strong>Consultation</strong> → Linked to transcription</li>
+                        <li><strong>Document</strong> → 20 medical document types</li>
+                    </ul>
                 </div>
-
-                <div class="schema-table">
-                    <div class="table-name">Patient</div>
-                    <div class="schema-field">
-                        <span class="field-name">id</span>
-                        <span class="field-type">String @id @default(uuid())</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">firstName</span>
-                        <span class="field-type">String</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">lastName</span>
-                        <span class="field-type">String</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">ahvNumber</span>
-                        <span class="field-type">String (756.XXXX.XXXX.XX)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">birthDate</span>
-                        <span class="field-type">DateTime</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">insurance</span>
-                        <span class="field-type">String?</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">documents</span>
-                        <span class="field-type">Document[]</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">consultations</span>
-                        <span class="field-type">Consultation[]</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">organisationId</span>
-                        <span class="field-type">String → Organisation</span>
-                    </div>
+                <div class="service-card">
+                    <h3>🧠 AI Processing Entities</h3>
+                    <ul style="margin-left: 20px; margin-top: 15px; line-height: 1.8;">
+                        <li><strong>Transcription</strong> → Audio → Text conversion</li>
+                        <li><strong>Completion</strong> → LLM generation tracking</li>
+                        <li><strong>Embedding</strong> → Semantic search vectors</li>
+                    </ul>
                 </div>
-
-                <div class="schema-table">
-                    <div class="table-name">Consultation</div>
-                    <div class="schema-field">
-                        <span class="field-name">id</span>
-                        <span class="field-type">String @id @default(uuid())</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">date</span>
-                        <span class="field-type">DateTime</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">transcriptionId</span>
-                        <span class="field-type">String? (links to AI service)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">userId</span>
-                        <span class="field-type">String → User</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">patientId</span>
-                        <span class="field-type">String → Patient</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">documents</span>
-                        <span class="field-type">Document[]</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">deletedAt</span>
-                        <span class="field-type">DateTime? (soft delete)</span>
-                    </div>
+                <div class="service-card">
+                    <h3>🔒 Compliance Features</h3>
+                    <ul style="margin-left: 20px; margin-top: 15px; line-height: 1.8;">
+                        <li><strong>Audit Trail</strong> → Every document change logged</li>
+                        <li><strong>Soft Delete</strong> → Data recovery capability</li>
+                        <li><strong>Schema Isolation</strong> → Service separation</li>
+                    </ul>
                 </div>
-
-                <div class="schema-table">
-                    <div class="table-name">Document</div>
-                    <div class="schema-field">
-                        <span class="field-name">id</span>
-                        <span class="field-type">String @id @default(uuid())</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">title</span>
-                        <span class="field-type">String</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">documentType</span>
-                        <span class="field-type">DocumentType (20 types)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">content</span>
-                        <span class="field-type">Json (ProseMirror format)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">status</span>
-                        <span class="field-type">DRAFT | PENDING | APPROVED</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">authorId</span>
-                        <span class="field-type">String → User</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">patientId</span>
-                        <span class="field-type">String → Patient</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">consultationId</span>
-                        <span class="field-type">String? → Consultation</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">deletedAt</span>
-                        <span class="field-type">DateTime? (soft delete)</span>
-                    </div>
-                </div>
-
-                <div class="schema-table">
-                    <div class="table-name">DocumentHistory (Audit Trail)</div>
-                    <div class="schema-field">
-                        <span class="field-name">id</span>
-                        <span class="field-type">String @id @default(uuid())</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">documentId</span>
-                        <span class="field-type">String → Document (CASCADE)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">action</span>
-                        <span class="field-type">CREATED | UPDATED | APPROVED</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">userId</span>
-                        <span class="field-type">String → User</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">createdAt</span>
-                        <span class="field-type">DateTime</span>
-                    </div>
-                </div>
-
-                <div class="schema-table">
-                    <div class="table-name">Organisation</div>
-                    <div class="schema-field">
-                        <span class="field-name">id</span>
-                        <span class="field-type">String @id @default(uuid())</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">name</span>
-                        <span class="field-type">String</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">taxNumber</span>
-                        <span class="field-type">String?</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">street, city, zip</span>
-                        <span class="field-type">String?</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">licenseCount</span>
-                        <span class="field-type">Int @default(0)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">logo</span>
-                        <span class="field-type">Logo? (1-to-1)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">User</span>
-                        <span class="field-type">User[]</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">Patient</span>
-                        <span class="field-type">Patient[]</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="database-schema">
-                <h3>AI Schema (Processing)</h3>
-
-                <div class="schema-table">
-                    <div class="table-name">Transcription</div>
-                    <div class="schema-field">
-                        <span class="field-name">id</span>
-                        <span class="field-type">String @id</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">state</span>
-                        <span class="field-type">PENDING | COMPLETED | FAILED</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">transcriptionContent</span>
-                        <span class="field-type">String (transcribed text)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">audioFile</span>
-                        <span class="field-type">String (Azure Blob URL)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">audioFileName</span>
-                        <span class="field-type">String?</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">audioSizeBytes</span>
-                        <span class="field-type">Int?</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">medicalDomain</span>
-                        <span class="field-type">String? (Neurologie, etc.)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">vendorId</span>
-                        <span class="field-type">openai | infomaniak</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">vendorModelId</span>
-                        <span class="field-type">whisper (configurable)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">completedAt</span>
-                        <span class="field-type">DateTime?</span>
-                    </div>
-                </div>
-
-                <div class="schema-table">
-                    <div class="table-name">Completion (LLM Calls)</div>
-                    <div class="schema-field">
-                        <span class="field-name">id</span>
-                        <span class="field-type">String @id</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">state</span>
-                        <span class="field-type">PENDING | COMPLETED | FAILED</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">completionContent</span>
-                        <span class="field-type">String (generated text)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">promptType</span>
-                        <span class="field-type">String (documentType)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">promptMessages</span>
-                        <span class="field-type">PromptMessage[] (system + user)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">promptTokens</span>
-                        <span class="field-type">Int</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">completionTokens</span>
-                        <span class="field-type">Int</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">vendorModelId</span>
-                        <span class="field-type">LLM model (configurable)</span>
-                    </div>
-                </div>
-
-                <div class="schema-table">
-                    <div class="table-name">DocumentEmbedding (Semantic Search)</div>
-                    <div class="schema-field">
-                        <span class="field-name">id</span>
-                        <span class="field-type">String @id</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">sourceTable</span>
-                        <span class="field-type">documents | consultations</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">sourceId</span>
-                        <span class="field-type">String (FK to source)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">patientId</span>
-                        <span class="field-type">String?</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">textContent</span>
-                        <span class="field-type">Text (original content)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">embedding</span>
-                        <span class="field-type">vector(384) (pgvector!)</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">documentType</span>
-                        <span class="field-type">String?</span>
-                    </div>
-                    <div class="schema-field">
-                        <span class="field-name">timePeriod</span>
-                        <span class="field-type">DateTime?</span>
+                <div class="service-card">
+                    <h3>🛠️ Technical Stack</h3>
+                    <div class="tech-stack" style="margin-top: 15px;">
+                        <span class="tech-badge">PostgreSQL 15</span>
+                        <span class="tech-badge">Prisma ORM</span>
+                        <span class="tech-badge">pgvector</span>
+                        <span class="tech-badge">UUID Primary Keys</span>
                     </div>
                 </div>
             </div>
 
             <div class="info-box">
-                <strong>✅ pgvector Extension Already Deployed!</strong><br>
-                The database is ready for semantic search with 384-dimensional embeddings.<br>
-                Vector index created: <code>ivfflat (embedding vector_cosine_ops) WITH (lists = 100)</code>
+                <strong>✅ Semantic Search Ready:</strong> pgvector extension enables AI-powered similarity search across documents and consultations.
             </div>
         </div>
 
