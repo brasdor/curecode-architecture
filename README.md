@@ -16,7 +16,7 @@ CureCode is a production medical AI documentation platform designed for Swiss he
 
 ## 🏗️ Architecture
 
-The platform follows a **three-tier microservices architecture**:
+The platform follows a **three-tier service architecture**:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
